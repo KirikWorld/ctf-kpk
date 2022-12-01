@@ -1,0 +1,43 @@
+.ranked-user {
+    display: flex;
+    width: 100%;
+    height: 55px;
+    align-items: center;
+    padding: 0px 10px;
+
+    background: #0000006f;
+    border: 4px solid rgba(31, 0, 53, 0);
+    /* background: transparent;
+    border: 4px solid rgba(31, 0, 53, 0.642); */
+
+    mix-blend-mode: soft-light;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 12px;
+
+    font-size: 30px;
+
+    margin-bottom: 20px;
+}
+
+.ranked-user .left-part {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    overflow-y: auto;
+}
+
+.ranked-user .left-part::-webkit-scrollbar {
+    height: 0px;
+}
+
+.ranked-user .left-part p {
+    margin-right: 20px;
+}
+
+.ranked-user #points {
+    width: 30%;
+    display: flex;
+    justify-content: flex-end;
+}
