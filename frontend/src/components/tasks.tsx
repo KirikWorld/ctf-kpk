@@ -8,7 +8,7 @@ export default function Tasks() {
     const [unauthorized, setUnauthorized] = useState(false);
 
     async function getTasks() {
-        let response: Response = await fetch("http://127.0.0.1:8000/tasks/", {
+        let response: Response = await fetch("https://ctf-room.onrender.com/tasks/", {
             headers: {
                 Authorization: `Token ${localStorage.getItem("auth_token")}`,
             },

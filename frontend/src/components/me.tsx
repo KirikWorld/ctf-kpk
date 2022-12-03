@@ -11,7 +11,7 @@ export default function Me() {
     const navigator = useNavigate();
 
     async function getMe() {
-        let response: Response = await fetch("http://127.0.0.1:8000/users/me", {
+        let response: Response = await fetch("https://ctf-room.onrender.com/users/me", {
             headers: {
                 Authorization: `Token ${localStorage.getItem("auth_token")}`,
             },
@@ -24,7 +24,7 @@ export default function Me() {
 
     async function usersRanks() {
         let response: Response = await fetch(
-            "http://127.0.0.1:8000/users/ranks",
+            "https://ctf-room.onrender.com/users/ranks",
             {
                 headers: {
                     Authorization: `Token ${localStorage.getItem(

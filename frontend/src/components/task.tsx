@@ -18,7 +18,7 @@ export function Task(props: any) {
     async function handleFlag(e: any) {
         if (e.key === "Enter") {
             let response: Response = await fetch(
-                "http://127.0.0.1:8000/tasks/",
+                "https://ctf-room.onrender.com/tasks/",
                 {
                     method: "POST",
                     headers: {
@@ -54,7 +54,7 @@ export function Task(props: any) {
                         Файл:{" "}
                         {props.tasks.file ? (
                             <a
-                                href={`http://127.0.0.1:8000/media/${props.tasks.file}`}
+                                href={`https://ctf-room.onrender.com/media/${props.tasks.file}`}
                                 target="_blank"
                                 rel="noreferrer"
                             >

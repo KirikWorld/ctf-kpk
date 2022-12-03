@@ -12,7 +12,7 @@ export default function Signup() {
 
     async function signin() {
         let response: Response = await fetch(
-            "http://localhost:8000/auth/token/login/",
+            "https://ctf-room.onrender.com/auth/token/login/",
             {
                 method: "POST",
                 headers: {
