@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import React from "react"
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./me.css";
 import RankedUser from "./rankedUser";
@@ -11,11 +11,20 @@ export default function Me() {
     const navigator = useNavigate();
 
     async function getMe() {
-        let response: Response = await fetch("https://ctf-room.onrender.com/users/me", {
-            headers: {
-                Authorization: `Token ${localStorage.getItem("auth_token")}`,
-            },
-        });
+        let response: Response = await fetch(
+            "https://ctf-room.onrender.com/users/me",
+            {
+                headers: {
+                    Authorization: `Token ${localStorage.getItem(
+                        "auth_token"
+                    )}`,
+                },
+            }
+        );
+        if (response.status === 401) {
+            window.location.replace("/signin/");
+            return;
+        }
         let data = await response.json();
         setUsername(data.user);
         setPoints(data.points);
