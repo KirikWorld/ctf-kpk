@@ -23,11 +23,9 @@ export default function Tasks() {
     }
 
     useEffect(() => {
-        return () => {
             getTasks().then((data) => {
                 setTasks(Object.values(data));
             });
-        };
     }, []);
 
     return (
