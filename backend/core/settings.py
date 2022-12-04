@@ -100,8 +100,12 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'ctfroom',                      
+        'USER': 'root',
+        'PASSWORD': 'TedG7VrXEohXqNRvVMA7cfpmTSNGq84z',
+        'HOST': 'dpg-ce65lh5a4991ueuaqj7g-a.frankfurt-postgres.render.com',
+        'PORT': '5432',
     }
 }
 
