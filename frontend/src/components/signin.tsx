@@ -2,6 +2,7 @@ import "./signin.css";
 import { useRef, useState } from "react";
 import React from "react"
 import { useNavigate } from "react-router-dom";
+import Loading from "./loading";
 
 export default function Signup() {
     const [help, setHelp] = useState(false);
@@ -9,8 +10,10 @@ export default function Signup() {
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
     const signinContainer = useRef(null);
+    const [unauthorized, setUnauthorized] = useState(false);
 
     async function signin() {
+        setUnauthorized(true);
         let response: Response = await fetch(
             "https://ctf-room.onrender.com/auth/token/login/",
             {
@@ -24,6 +27,7 @@ export default function Signup() {
         let data = await response.json();
         if (response.status !== 200) {
             localStorage.setItem("auth_token", "");
+            setUnauthorized(false);
             return;
         }
         localStorage.setItem("auth_token", data.auth_token);
@@ -31,6 +35,8 @@ export default function Signup() {
     }
 
     return (
+        <>
+        {unauthorized ? <Loading /> : null}
         <div className="signin-container" ref={signinContainer}>
             <div className="login-form">
                 <h3>Вход</h3>
@@ -72,5 +78,6 @@ export default function Signup() {
                 </u>
             </div>
         </div>
+        </>
     );
 }

@@ -5,6 +5,7 @@ import Signin from "./components/signin";
 import logo from "./img/logo.png";
 import Me from "./components/me";
 import { useNavigate } from "react-router-dom";
+import Loading from "./components/loading";
 
 function App() {
     const navigator = useNavigate();
@@ -21,6 +22,7 @@ function App() {
                 <Route path="/tasks/" element={<Tasks />} />
                 <Route path="/signin/" element={<Signin />} />
                 <Route path="/" element={<Me />} />
+                <Route path="test" element={<Loading />} />
             </Routes>
         </div>
     );

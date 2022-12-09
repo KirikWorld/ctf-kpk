@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Task } from "./task";
 import React from "react"
 import "./tasks.css";
+import Loading from "./loading";
 
 export default function Tasks() {
     const [tasks, setTasks] = useState<Array<string>>([]);
@@ -39,7 +40,7 @@ export default function Tasks() {
                     {unauthorized ? (
                         <h1>НЕАВТОРИЗОВАН</h1>
                     ) : (
-                        <h1>LOADING...</h1>
+                        <Loading />
                     )}
                 </>
             )}
