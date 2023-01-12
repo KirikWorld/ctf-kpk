@@ -1,0 +1,45 @@
+.pswdReqContainer {
+    position: absolute;
+
+    top: 60px;
+    left: 0;
+
+    width: auto;
+    height: auto;
+
+    background: rgb(255, 255, 255);
+    color: black;
+
+    font-size: 13px;
+
+    z-index: 3;
+
+    border-radius: 10px;
+
+    padding: 10px 0;
+}
+
+.pswdReq li {
+    margin-left: 15px;
+}
+
+.pswdReq-enter {
+    opacity: 0;
+    transform: scale(0.5);
+}
+
+.pswdReq-enter-active {
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+.pswdReq-exit {
+    opacity: 1;
+}
+
+.pswdReq-exit-active {
+    opacity: 0;
+    transform: scale(0.5);
+    transition: opacity 300ms, transform 300ms;
+}

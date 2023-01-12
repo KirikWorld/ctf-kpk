@@ -1,0 +1,164 @@
+.task-container {
+    display: grid;
+    grid-template-rows: 1fr 5fr 1fr;
+
+    row-gap: 30px;
+    /* flex-direction: column; */
+
+    max-width: 460px;
+    width: 100%;
+    height: 300px;
+
+    padding: 20px;
+    margin-bottom: 30px;
+
+    background: linear-gradient(
+        295.61deg,
+        rgba(160, 160, 160, 0.108) -0.03%,
+        rgba(80, 80, 80, 0.296) 100%
+    );
+    mix-blend-mode: normal;
+    box-shadow: 1px 2px 10px 4px rgba(0, 0, 0, 0.178);
+    backdrop-filter: blur(9.51399px);
+
+    border-radius: 20px;
+
+    position: relative;
+}
+
+.solved {
+    background: linear-gradient(
+        295.61deg,
+        rgba(160, 160, 160, 0.333) -0.03%,
+        rgba(80, 80, 80, 0.233) 100%
+    );
+    filter: contrast(70%);
+    mix-blend-mode: normal;
+}
+
+.task-container a {
+    color: white;
+}
+
+.task-container .title {
+    font-size: 60px;
+    text-align: center;
+}
+
+.task-container .title {
+    font-size: 30px;
+    text-align: center;
+}
+
+.task-container .description {
+    font-size: 20px;
+    height: max-content;
+    /* word-break: break-all; */
+    max-height: 90px;
+    overflow-y: auto;
+    padding: 0;
+}
+
+.descriptionContainer {
+    background: rgba(205, 135, 255, 0.19);
+    box-shadow: 2px 3px 10px 2px rgba(0, 0, 0, 0.118);
+    
+    width: 100px;
+    height: 30px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 5px;
+}
+
+.task-container .description::-webkit-scrollbar {
+    height: 0px;
+    width: 0px;
+}
+
+.task-container .cost {
+    font-size: 40px;
+    align-self: center;
+    width: fit-content;
+
+    position: absolute;
+    top: 240px;
+    right: 10px;
+}
+
+.task-container .file {
+    height: max-content;
+}
+
+.task-container input {
+    color: white;
+
+    height: 45px;
+    /* margin-left: 20px; */
+    font-size: 25px;
+    width: 100%;
+    /* max-width: 350px; */
+    border: none;
+    padding: 0 10px;
+    border-radius: 12px;
+
+    background: #ffffff3e;
+    mix-blend-mode: multiply;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+    transition: all 0.2s;
+}
+
+.task-container input::-webkit-input-placeholder {
+    color: rgb(192, 192, 192);
+}
+
+.task-container input:hover {
+    background: #ffffffac;
+    mix-blend-mode: soft-light;
+    color: black;
+    border: none;
+}
+
+.task-container input:focus {
+    background: white;
+    mix-blend-mode: soft-light;
+    color: black;
+}
+
+.task-container input:hover::-webkit-input-placeholder {
+    color: rgb(103, 103, 103);
+}
+
+.task-container input:focus::-webkit-input-placeholder {
+    color: rgb(70, 70, 70);
+}
+
+.cardRotate-anim {
+    animation: cardRotate 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) normal;
+}
+
+.task-container .bottom {
+    display: flex;
+    justify-content: space-between;
+}
+
+.success {
+    background: rgba(0, 192, 0, 0.197);
+    border-radius: 20px;
+    padding: 0 15px;
+    
+    display: flex;
+    align-items: center;
+}
+
+@keyframes cardRotate {
+    from {
+        transform: rotate3d(0, 1, 0, 120deg);
+    }
+    to {
+        transform: rotate3d(0, 1, 0, 0deg);
+    }
+}

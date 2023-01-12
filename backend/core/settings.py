@@ -30,15 +30,16 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'djoser',
-    'corsheaders',
+    # 'corsheaders',
     
     'users',
     'taskbase',
+    'app'
 ]
 
 # CORS_ORIGIN_ALLOW_ALL = DEBUG
-CORS_ALLOW_ALL_ORIGINS = True
-CORS_ALLOW_CREDENTIALS = True
+# CORS_ALLOW_ALL_ORIGINS = True
+# CORS_ALLOW_CREDENTIALS = True
 # CORS_ALLOWED_ORIGINS = [
 #     'http://localhost:3030',
 # ]
@@ -49,15 +50,29 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.BasicAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated', )
+        'rest_framework.permissions.IsAuthenticated', ),
+    # 'DEFAULT_RENDERER_CLASSES': (
+    #     'rest_framework.renderers.JSONRenderer',
+    # )
 }
 
 DJOSER = {
     'LOGIN_FIELD': 'username',
     'user': 'users.serializers.UserSerializer',
+    'ACTIVATION_URL': 'signin/activate/{uid}/{token}',
+    'SEND_ACTIVATION_EMAIL': True,
+    'SERIALIZER': {},
 }
 
-CORS_ORIGIN_ALLOW_ALL = True
+# DJOSER = {
+#     'PASSWORD_RESET_CONFIRM_URL': '#/password/reset/confirm/{uid}/{token}',
+#     'USERNAME_RESET_CONFIRM_URL': '#/username/reset/confirm/{uid}/{token}',
+#     'ACTIVATION_URL': '#/activate/{uid}/{token}',
+#     'SEND_ACTIVATION_EMAIL': True,
+#     'SERIALIZERS': {},
+# }
+
+# CORS_ORIGIN_ALLOW_ALL = True
 
 AUTH_USER_MODEL = "users.User"
 # LOGIN_REDIRECT_URL = '/'
@@ -98,14 +113,23 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+#for production
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'kuleshm3_ctfroom',
+#         'USER': 'kuleshm3_ctfroom',
+#         'PASSWORD': 'ASdfgh1122',
+#         'HOST': 'localhost',
+#         'PORT': '3306',
+#     }
+# }
+
+#for develop
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'ctfroom',                      
-        'USER': 'root',
-        'PASSWORD': 'TedG7VrXEohXqNRvVMA7cfpmTSNGq84z',
-        'HOST': 'dpg-ce65lh5a4991ueuaqj7g-a.frankfurt-postgres.render.com',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -144,9 +168,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-SSTATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
+STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
 STATIC_URL = 'static/'
-STATICFILES_DIRS = [BASE_DIR/'static',]
+STATICFILES_DIRS = [BASE_DIR/'static']
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
 MEDIA_URL = '/media/'
@@ -156,3 +180,11 @@ MEDIA_ROOT = Path.joinpath(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'ctfkpk@gmail.com'
+EMAIL_HOST_PASSWORD = 'gqyprnzjxhrpzist'

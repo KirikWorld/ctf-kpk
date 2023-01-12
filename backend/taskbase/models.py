@@ -19,13 +19,13 @@ class Task(models.Model):
     description = models.TextField(verbose_name="Описание", blank=True)
     costs = models.IntegerField(verbose_name="Кол-во баллов", blank=False)
     file = models.FileField(verbose_name="Файл (если требуется)", blank=True, upload_to='uploads/')
-    flag = models.CharField(verbose_name="Флаг", blank=False, max_length=120, help_text="По умолчанию флаг оборачивается в 'ctfRoom{}'")
+    flag = models.CharField(verbose_name="Флаг", blank=False, max_length=120, help_text="По умолчанию флаг оборачивается в 'ctfKpk{}'")
     solves_by = models.ManyToManyField(User, blank=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     
     def save(self, *args, **kwargs):
-        if self.flag.find('ctfRoom{'):
-            self.flag = "ctfRoom{" + self.flag + "}"
+        if not self.flag.find('{') != -1:
+            self.flag = "ctfKpk{" + self.flag + "}"
         super().save(*args, **kwargs)
     
     def __str__(self):
@@ -42,13 +42,13 @@ class TeamsTasks(models.Model):
     description = models.TextField(verbose_name="Описание", blank=True)
     costs = models.IntegerField(verbose_name="Кол-во баллов", blank=False)
     file = models.FileField(verbose_name="Файл (если требуется)", blank=True, upload_to='uploads/')
-    flag = models.CharField(verbose_name="Флаг", blank=False, max_length=120, help_text="По умолчанию флаг оборачивается в 'ctfRoom{}'")
+    flag = models.CharField(verbose_name="Флаг", blank=False, max_length=120, help_text="По умолчанию флаг оборачивается в 'ctfKpk{}'")
     solves_by = models.ManyToManyField(Teams, blank=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     
     def save(self, *args, **kwargs):
-        if self.flag.find('ctfRoom{'):
-            self.flag = "ctfRoom{" + self.flag + "}"
+        if not self.flag.find('{') != -1:
+            self.flag = "ctfKpk{" + self.flag + "}"
         super().save(*args, **kwargs)
     
     def __str__(self):

@@ -24,12 +24,13 @@ class UserManager(BaseUserManager):
 
 class User(AbstractUser):
     username = models.CharField(max_length=30, verbose_name="Никнейм", unique=True)
+    email = models.EmailField(unique=True)
     points = models.IntegerField(verbose_name="Кол-во очков", default=0)
     group = models.CharField(verbose_name="Группа", max_length=10, blank=False)
     team = models.ForeignKey('Teams', on_delete=models.SET_NULL, null=True, blank=True, default=None)
     
     USERNAME_FIELD = 'username'
-    REQUIRED_FIELDS = ['group', 'first_name', 'last_name']
+    REQUIRED_FIELDS = ['group', 'first_name', 'last_name', 'email']
     objects = UserManager()
     
     def __str__(self):

@@ -2,8 +2,8 @@ from django.contrib import admin
 from .models import User, Teams
 from django.contrib.auth.admin import UserAdmin
 
-UserAdmin.list_display += ('group', )
-UserAdmin.fieldsets +=  (('Доп. поля', {'fields': ('group', )}),)
+UserAdmin.list_display += ('group', 'points', )
+UserAdmin.fieldsets +=  (('Доп. поля', {'fields': ('group', 'points', )}),)
 admin.site.register(User, UserAdmin)
 # @admin.register(User)
 # class UserAdmin(UserAdmin):

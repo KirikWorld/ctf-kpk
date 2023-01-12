@@ -44,8 +44,9 @@ class ListTasks(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def get(self, request):
+        current_user = request.user
         tasks = {task.pk: {"title": task.title, "description": task.description if task.description else "",
-                           "costs": task.costs, "file": str(task.file) if task.file else ""} for task in Task.objects.all() if not task.solves_by.filter(username=request.user.username)}
+                           "costs": task.costs, "file": str(task.file) if task.file else "", "solved": str(task.solves_by.filter(username=current_user).first()), "category": str(task.category)} for task in Task.objects.all()}
         return Response(tasks)
 
     def post(self, request):
@@ -58,6 +59,8 @@ class ListTasks(APIView):
                     if not task.solves_by.filter(username=current_user):
                         current_user.points += task.costs
                         task.solves_by.add(current_user)
+                        if task.costs > 7: task.costs -= 7
+                        task.save()
                         current_user.save()
                         return Response({"ur_points": current_user.points})
         return Response("Something wents wrong")

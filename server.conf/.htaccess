@@ -1,0 +1,3 @@
+PassengerEnabled On
+PassengerAppRoot /home/k/kuleshm3/ctf-room/public_html/backend/core
+PassengerPython /home/k/kuleshm3/ctf-room/public_html/venv/bin/python
