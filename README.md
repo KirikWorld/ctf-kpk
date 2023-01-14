@@ -4,7 +4,7 @@
 
 Firstly you need to set up python environment in cmd (primary) ir powershell with commands:
 
-`./venv/Scripts/activate.ps1` for powershell | `.` for cmd ---> in backend directory
+`./venv/Scripts/activate.ps1` for powershell | `.\\venv\\Scripts\\activate.bat` for cmd ---> in backend directory
 
 Then you can install libraries with `pip install -r requirements.txt` command
 
