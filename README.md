@@ -22,7 +22,7 @@ After all you can run frontend part of web app in *frontend* folder with `npm i`
 
 
 
-### On linux or macos
+### On linux or macos:
 
 Install python, pip and venv. To pip run `python -m pip3`, to venv run `pip3 install virtualenv`
 
