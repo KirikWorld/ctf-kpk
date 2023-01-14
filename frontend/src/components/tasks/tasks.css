@@ -10,6 +10,7 @@
     align-content: flex-start;
 
     position: relative;
+    
 }
 
 @media (max-width: 1450px) {

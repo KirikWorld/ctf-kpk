@@ -19,6 +19,8 @@ function App() {
     const [notifText, setNotifText] = useState(false);
     const [loading, setLoading] = useState<boolean>(false);
 
+    document.title = "ctf-kpk"
+
     let options = {
         namespace: "storage",
         storages: ["local", "cookie", "memory", "session"],
