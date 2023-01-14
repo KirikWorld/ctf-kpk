@@ -2,7 +2,7 @@
 
 ### **On windows:**
 
-Firstly you need to set up python environment in cmd (primary) ir powershell with commands:
+Firstly you need to set up python environment in cmd (primary) or powershell with commands:
 
 `./venv/Scripts/activate.ps1` for powershell | `.\\venv\\Scripts\\activate.bat` for cmd ---> in backend directory
 
