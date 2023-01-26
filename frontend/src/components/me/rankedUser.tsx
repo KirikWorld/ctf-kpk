@@ -6,8 +6,8 @@ export default function RankedUser(props: any) {
     let style = {}
     if (props.index % 2 !== 0) {
         style = {
-            background: `${props.me===ranks.username ? "rgba(253, 242, 183, 0.251)" : "transparent"}`,
-            border: "4px solid rgba(31, 0, 53, 0.642)",
+            background: `${props.me===ranks.username ? "#ddd6e750" : "transparent"}`,
+            border: "4px solid #6b52a08c",
         };
     }
 

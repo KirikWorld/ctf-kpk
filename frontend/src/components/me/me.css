@@ -24,14 +24,15 @@
     max-width: 620px;
     height: 280px;
     border-radius: 20px;
-    background: linear-gradient(
+    /* background: linear-gradient(
         295.61deg,
-        rgba(160, 160, 160, 0.322) -0.03%,
-        rgba(80, 80, 80, 0.365) 100%
-    );
+        rgba(37, 0, 125, 0.215) -0.03%,
+        rgba(68, 68, 68, 0.471) 100%
+    ); */
     mix-blend-mode: normal;
-    box-shadow: 1px 2px 10px 4px rgba(0, 0, 0, 0.178);
-    backdrop-filter: blur(4px);
+    box-shadow: 0px 0px 18px 1px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(20px);
+    background: #a659fd10;
 
     display: flex;
     flex-direction: column;
@@ -68,17 +69,17 @@
     font-family: "Comfortaa";
     font-style: normal;
 
-    background: #c673c93c;
-    mix-blend-mode: multiply(1%);
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    background: rgba(255, 255, 255, 0.16);
+    mix-blend-mode: multiply(90%);
+    box-shadow: 1px 2px 20px 2px rgba(0, 0, 0, 0.25);
     border: none;
-    border-radius: 20px;
+    border-radius: 10px;
 
     transition: all 0.2s;
 }
 
 .me-btns button:nth-child(2) {
-    color: rgb(121, 121, 255);
+    color: rgb(255, 255, 255);
 }
 
 .me-btns button:last-child {
@@ -86,7 +87,7 @@
 }
 
 .me-btns button:hover {
-    background: #ffffff37;
+    background: #ffffff4e;
     color: white;
 }
 
@@ -102,14 +103,13 @@
     max-width: 620px;
     height: 250px;
     border-radius: 20px;
-    background: linear-gradient(
-        295.61deg,
-        rgba(160, 160, 160, 0.322) -0.03%,
-        rgba(80, 80, 80, 0.365) 100%
-    );
     mix-blend-mode: normal;
-    box-shadow: 1px 2px 10px 4px rgba(0, 0, 0, 0.178);
-    backdrop-filter: blur(4px);
+    box-shadow: 0px 0px 18px 1px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(20px);
+    background: #a659fd10;
+    
+    /* Note: backdrop-filter has minimal browser support */
+    border-radius: 20px;
 
     display: flex;
     flex-direction: column;
@@ -132,14 +132,11 @@
     height: 100%;
 
     border-radius: 20px;
-    background: linear-gradient(
-        295.61deg,
-        rgba(160, 160, 160, 0.322) -0.03%,
-        rgba(80, 80, 80, 0.365) 100%
-    );
+
     mix-blend-mode: normal;
-    box-shadow: 1px 2px 10px 4px rgba(0, 0, 0, 0.178);
-    backdrop-filter: blur(4px);
+    box-shadow: 0px 0px 18px 1px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(20px);
+    background: #a659fd10;
 
     display: flex;
     flex-direction: column;

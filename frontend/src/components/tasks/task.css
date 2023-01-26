@@ -5,21 +5,17 @@
     row-gap: 30px;
     /* flex-direction: column; */
 
-    max-width: 460px;
+    max-width: 350px;
     width: 100%;
-    height: 300px;
+    height: 350px;
 
     padding: 20px;
     margin-bottom: 30px;
 
-    background: linear-gradient(
-        295.61deg,
-        rgba(160, 160, 160, 0.108) -0.03%,
-        rgba(80, 80, 80, 0.296) 100%
-    );
     mix-blend-mode: normal;
-    box-shadow: 1px 2px 10px 4px rgba(0, 0, 0, 0.178);
-    backdrop-filter: blur(9.51399px);
+    box-shadow: 0px 0px 18px 1px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(20px);
+    background: #a659fd10;
 
     border-radius: 20px;
 
@@ -80,60 +76,13 @@
 
 .task-container .cost {
     font-size: 40px;
-    align-self: center;
+    align-self: right;
     width: fit-content;
-
-    position: absolute;
-    top: 240px;
-    right: 10px;
+    justify-self: end;
 }
 
 .task-container .file {
     height: max-content;
-}
-
-.task-container input {
-    color: white;
-
-    height: 45px;
-    /* margin-left: 20px; */
-    font-size: 25px;
-    width: 100%;
-    /* max-width: 350px; */
-    border: none;
-    padding: 0 10px;
-    border-radius: 12px;
-
-    background: #ffffff3e;
-    mix-blend-mode: multiply;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-
-    transition: all 0.2s;
-}
-
-.task-container input::-webkit-input-placeholder {
-    color: rgb(192, 192, 192);
-}
-
-.task-container input:hover {
-    background: #ffffffac;
-    mix-blend-mode: soft-light;
-    color: black;
-    border: none;
-}
-
-.task-container input:focus {
-    background: white;
-    mix-blend-mode: soft-light;
-    color: black;
-}
-
-.task-container input:hover::-webkit-input-placeholder {
-    color: rgb(103, 103, 103);
-}
-
-.task-container input:focus::-webkit-input-placeholder {
-    color: rgb(70, 70, 70);
 }
 
 .cardRotate-anim {

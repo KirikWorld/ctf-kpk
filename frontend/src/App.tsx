@@ -9,7 +9,6 @@ import Loading from "./components/global/loading";
 import Notification from "./components/global/notification";
 import { Context } from "./components/global/context";
 import { useState } from "react";
-import santa from "./img/santa.png";
 import Signup from "./components/signup/signup";
 import Basil from "./components/global/basil.min.js";
 
@@ -35,7 +34,7 @@ function App() {
                 {notif && (
                     <Notification setNotif={setNotif}>{notifText}</Notification>
                 )}
-                <p className="version">V: 0.2.1b</p>
+                <p className="version">V: 0.2.4b</p>
                 {loading && <Loading />}
                 <div className="App">
                     <div className="logo-wrapper">
@@ -43,12 +42,6 @@ function App() {
                             src={logo}
                             alt=""
                             className="logo"
-                            onClick={() => navigator("/")}
-                        />
-                        <img
-                            src={santa}
-                            alt=""
-                            className="santa"
                             onClick={() => navigator("/")}
                         />
                     </div>

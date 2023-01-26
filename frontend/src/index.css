@@ -9,6 +9,84 @@
     outline: none;
 }
 
+button {
+    padding: 0 10px;
+    display: flex;
+    width: 170px;
+    height: 45px;
+    font-size: 18px;
+    line-height: 20px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    font-family: "Comfortaa";
+    font-style: normal;
+
+    background: rgba(255, 255, 255, 0.16);
+    mix-blend-mode: multiply(90%);
+    box-shadow: 1px 2px 20px 2px rgba(0, 0, 0, 0.25);
+    border: none;
+    border-radius: 10px;
+
+    transition: all 0.2s;
+}
+
+button:hover {
+    background: #ffffff4e;
+    color: white;
+}
+
+button:active {
+    transform: translateY(2px);
+    background: rgba(255, 255, 255, 0.564);
+    color: black;
+}
+
+input {
+    color: white;
+
+    height: 45px;
+    /* margin-left: 20px; */
+    font-size: 25px;
+    width: 100%;
+    /* max-width: 350px; */
+    border: none;
+    padding: 0 10px;
+    border-radius: 12px;
+
+    background: #7c599f63;
+    mix-blend-mode: multiply;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+    transition: all 0.2s;
+}
+
+input::-webkit-input-placeholder {
+    color: rgb(192, 192, 192);
+}
+
+input:hover {
+    background: #a17ac85e;
+    mix-blend-mode: soft-light;
+    color: rgb(212, 212, 212);
+    border: none;
+}
+
+input:focus {
+    background: white;
+    mix-blend-mode: soft-light;
+    color: rgb(70, 70, 70);
+}
+
+input:hover::-webkit-input-placeholder {
+    color: rgb(212, 212, 212);
+}
+
+input:focus::-webkit-input-placeholder {
+    color: rgb(70, 70, 70);
+}
+
 html {
     height: 100%;
     width: 100%;
@@ -46,14 +124,16 @@ body {
 .App {
     height: 100%;
     width: 100%;
-    background: #180625;
+    background: #000000;
     color: #ffffff;
     display: flex;
     overflow-x: hidden;
-    background: url(./img/bg.jpg);
+    background: url(./img/newbg4.jpg);
+    background-color: #000000;
+    background-repeat: no-repeat;
     background-size: cover;
     object-fit: cover;
-    filter: brightness(98%);
+    filter: brightness(100%);
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;

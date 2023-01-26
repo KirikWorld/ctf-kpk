@@ -3,14 +3,10 @@
     top: 20px;
     margin: 0 auto;
 
-    background: linear-gradient(
-        295.61deg,
-        rgba(160, 160, 160, 0.405) -0.03%,
-        rgba(80, 80, 80, 0.705) 100%
-    );
     mix-blend-mode: normal;
-    box-shadow: 1px 2px 10px 4px rgba(0, 0, 0, 0.178);
-    backdrop-filter: blur(9.51399px);
+    box-shadow: 0px 0px 18px 1px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.030);
 
     border-radius: 20px;
 

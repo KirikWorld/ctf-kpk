@@ -10,14 +10,10 @@
     flex-shrink: 1;
 
     border-radius: 20px;
-    background: linear-gradient(
-        295.61deg,
-        rgba(160, 160, 160, 0.308) -0.03%,
-        rgba(80, 80, 80, 0.48) 100%
-    );
     mix-blend-mode: normal;
-    box-shadow: 1px 2px 10px 4px rgba(0, 0, 0, 0.178);
-    backdrop-filter: blur(9.51399px);
+    box-shadow: 0px 0px 18px 1px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(20px);
+    background: #a659fd10;
 
     margin: 0 auto;
     margin-bottom: 40px;
@@ -132,26 +128,7 @@
 }
 
 .signup-container .btns button {
-    padding: 0 10px;
-    display: flex;
-    width: 188px;
-    height: 45px;
-    font-size: 12px;
-    line-height: 20px;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    color: white;
-    font-family: "Comfortaa";
-    font-style: normal;
-
-    background: #f9a4eb5f;
-    mix-blend-mode: multiply(1%);
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border: none;
-    border-radius: 20px;
-
-    transition: all 0.2s;
+    font-size: 13px;
 }
 
 .signup-container .btns button:last-child {
@@ -160,18 +137,6 @@
 
 .signup-container .btns button:first-child {
     margin-right: 10px;
-}
-
-.signup-container .btns button:hover {
-    background: #ffffff37;
-    color: white;
-    /* animation: ease-in-out .5s infinite alternate btnHoverAnim; */
-}
-
-.signup-container .btns button:active {
-    transform: translateY(2px);
-    background: rgba(255, 255, 255, 0.564);
-    color: black;
 }
 
 @media (max-width: 655px) {
