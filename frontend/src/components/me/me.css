@@ -8,6 +8,7 @@
     padding-right: 20px;
     padding-bottom: 40px;
     max-height: 600px;
+    background: inherit;
 }
 
 .me-container .left-part {
@@ -16,23 +17,26 @@
     justify-content: space-between;
     width: 100%;
     height: 100%;
+    background: inherit;
 }
 
 .me {
+    position: relative;
     align-self: flex-start;
     width: 100%;
     max-width: 620px;
-    height: 280px;
-    border-radius: 20px;
+    height: 200px;
     /* background: linear-gradient(
         295.61deg,
         rgba(37, 0, 125, 0.215) -0.03%,
         rgba(68, 68, 68, 0.471) 100%
     ); */
     mix-blend-mode: normal;
+    background: #a659fd10;
     box-shadow: 0px 0px 18px 1px rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(20px);
-    background: #a659fd10;
+    border-radius: 20px;
+    /* background: #a659fd10; */
 
     display: flex;
     flex-direction: column;
@@ -41,7 +45,7 @@
 }
 
 .me h1 {
-    font-size: 45px;
+    font-size: 36px;
 }
 
 .me p {
@@ -58,7 +62,7 @@
 .me-btns button {
     padding: 0 10px;
     display: flex;
-    width: 170px;
+    width: 130px;
     height: 45px;
     font-size: 18px;
     line-height: 20px;
@@ -98,23 +102,33 @@
 }
 
 .daily {
+    position: relative;
     align-self: flex-start;
     width: 100%;
     max-width: 620px;
-    height: 250px;
-    border-radius: 20px;
-    mix-blend-mode: normal;
+    height: 320px;
+    background: #a659fd10;
     box-shadow: 0px 0px 18px 1px rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(20px);
-    background: #a659fd10;
-    
-    /* Note: backdrop-filter has minimal browser support */
     border-radius: 20px;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    display: grid;
+    grid-template-rows: 25px 1fr 50px;
+    gap: 20px;
     padding: 3%;
+}
+
+.daily p {
+    scrollbar-width: hidden;
+    overflow-y: scroll;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    hyphens: manual;
+    /* margin-bottom: 47px; */
+}
+
+.daily p::-webkit-scrollbar {
+    width: 0px;
 }
 
 .me-container .right-part {
@@ -124,19 +138,23 @@
     width: 100%;
     height: 100%;
     box-sizing: border-box;
+    background: inherit;
+}
+
+.me-container .right-part .blurofill {
+    height: 100%;
 }
 
 .rating {
+    position: relative;
     width: 100%;
     max-width: 620px;
     height: 100%;
 
-    border-radius: 20px;
-
-    mix-blend-mode: normal;
+    background: #a659fd10;
     box-shadow: 0px 0px 18px 1px rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(20px);
-    background: #a659fd10;
+    border-radius: 20px;
 
     display: flex;
     flex-direction: column;
@@ -160,12 +178,15 @@
 
 .raiting-container {
     overflow-x: auto;
+    position: relative;
+    height: 430px;
 }
 
 @media (max-width: 1300px) {
     .me-container {
         display: grid;
-        grid-template-rows: 1fr 3fr;
+        grid-template-rows: 1fr 1fr;
+        gap: 40px;
         grid-template-columns: minmax(260px, 600px);
         justify-content: center;
         padding: 0;
@@ -173,24 +194,100 @@
 
     .me-container .left-part {
         display: grid;
-        grid-template-rows: 1fr 1fr;
+        grid-template-rows: auto auto;
         grid-template-columns: minmax(260px, 600px);
-        row-gap: 20px;
+        row-gap: 40px;
+    }
+
+    .rating {
+        max-height: 600px;
     }
 }
 
 @media (max-width: 570px) {
     .me h1 {
-        font-size: 40px;
+        font-size: 37px;
     }
     .me p {
-        font-size: 30px;
+        font-size: 27px;
     }
     .me-btns button {
-        width: 150px;
-        font-size: 15px;
+        padding: 0 10px;
+        display: flex;
+        width: 110px;
+        height: 45px;
+        font-size: 13px;
+        line-height: 20px;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: white;
+        font-family: "Comfortaa";
+        font-style: normal;
+    
+        background: rgba(255, 255, 255, 0.16);
+        mix-blend-mode: multiply(90%);
+        box-shadow: 1px 2px 20px 2px rgba(0, 0, 0, 0.25);
+        border: none;
+        border-radius: 10px;
+    
+        transition: all 0.2s;
+    }
+    .daily {
+        position: relative;
+        align-self: flex-start;
+        width: 100%;
+        max-width: 620px;
+        height: 320px;
+        background: #a659fd10;
+    
+        display: grid;
+        grid-template-rows: 20px 1fr 60px;
+        gap: 30px;
+        padding: 3%;
+    }
+    .daily h1 {
+        font-size: 30px;
     }
     .rating h1 {
         font-size: 30px;
+    }
+    .rating p {
+        font-size: 27px;
+    }
+}
+
+@media (max-width: 485px) {
+    .me-btns button {
+        width: 90px;
+        height: 45px;
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 415px) {
+    .me-btns button {
+        width: 78px;
+        height: 45px;
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 360px) {
+    .daily h1 {
+        font-size: 23px;
+    }
+    .me-btns button {
+        width: 78px;
+        height: 45px;
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 350px) {
+    .me-btns button {
+        width: 63px;
+        height: 45px;
+        font-size: 11px;
     }
 }

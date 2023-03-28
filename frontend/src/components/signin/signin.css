@@ -3,23 +3,26 @@
     width: 100%;
     height: 100%;
     justify-content: center;
+    align-items: center;
+    background: inherit;
 }
 
 .login-form {
+    position: relative;
     width: 100%;
     max-width: 650px;
     height: 400px;
-    margin-top: 6%;
-    border-radius: 20px;
-    mix-blend-mode: normal;
+    background: #a659fd10;
     box-shadow: 0px 0px 18px 1px rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(20px);
-    background: #a659fd10;
+    border-radius: 20px;
 
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
+
+    backdrop-filter: blur(20px);
 }
 
 .login-form h3 {
@@ -50,7 +53,6 @@
     border-radius: 12px;
 
     background: #ffffff3e;
-    mix-blend-mode: multiply;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
     transition: all 0.2s;
@@ -58,14 +60,12 @@
 
 .login-form .login input:hover {
     background: #ffffffac;
-    mix-blend-mode: soft-light;
     color: black;
     border: none;
 }
 
 .login-form .login input:focus {
     background: white;
-    mix-blend-mode: soft-light;
     color: black;
 }
 
@@ -94,22 +94,21 @@
     border-radius: 12px;
 
     background: #ffffff3e;
-    mix-blend-mode: multiply;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
     transition: all 0.2s;
+
+    padding-right: 55px;
 }
 
 .login-form .pswd input:hover {
     background: #ffffffac;
-    mix-blend-mode: soft-light;
     color: black;
     border: none;
 }
 
 .login-form .pswd input:focus {
     background: white;
-    mix-blend-mode: soft-light;
     color: black;
 }
 
@@ -196,5 +195,15 @@
         width: 100%;
         height: 60px;
         color: black;
+    }
+}
+
+.pswd img {
+    width: 35px;
+}
+
+@media (max-width: 440px) {
+    .pswd img {
+        width: 25px;
     }
 }

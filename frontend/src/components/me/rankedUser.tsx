@@ -3,16 +3,31 @@ import React from "react";
 
 export default function RankedUser(props: any) {
     const ranks = props.ranks;
-    let style = {}
+    let style: any = {};
     if (props.index % 2 !== 0) {
         style = {
-            background: `${props.me===ranks.username ? "#ddd6e750" : "transparent"}`,
+            background: `${
+                props.me === ranks.username ? "#d2d2d2" : "transparent"
+            }`,
             border: "4px solid #6b52a08c",
         };
     }
 
+    if (props.me === ranks.username) {
+        style["position"] = "sticky";
+        style["bottom"] = "0";
+        style["top"] = "0";
+        style["color"] = "black";
+        style["border"] = "none";
+    }
+
     return (
-        <div className={props.me===ranks.username ? "ranked-user iam": "ranked-user"} style={style} >
+        <div
+            className={
+                props.me === ranks.username ? "ranked-user iam" : "ranked-user"
+            }
+            style={style}
+        >
             <div className="left-part">
                 <p>{props.index + 1}</p>
                 <p>{ranks.username}</p>

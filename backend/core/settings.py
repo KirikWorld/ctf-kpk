@@ -11,7 +11,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-d=zkuk2dx&z2z)6y2gnwxa!!7h^vpbm*co6&9_c_pb*k(0250r'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
@@ -30,12 +30,21 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'djoser',
+    'tinymce',
     # 'corsheaders',
     
     'users',
     'taskbase',
-    'app'
+    'app',
+    'news'
 ]
+
+TINYMCE_DEFAULT_CONFIG = {
+	'plugins': 'paste',
+	'paste_remove_styles': 'true',
+	'paste_remove_styles_if_webkit': 'true',
+	'paste_strip_class_attributes': 'all',
+}
 
 # CORS_ORIGIN_ALLOW_ALL = DEBUG
 # CORS_ALLOW_ALL_ORIGINS = True

@@ -1,5 +1,5 @@
 import "./notification.css";
-import { useState, useRef, useLayoutEffect, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 
 export default function Notification(props: any) {
     const [coordX, setCoordX] = useState<number>(0);

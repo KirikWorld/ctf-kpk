@@ -6,6 +6,21 @@ import RankedUser from "./rankedUser";
 import Loading from "../global/loading";
 import { Context } from "../global/context";
 import { useContext } from "react";
+import styled from "styled-components";
+
+const Solved = styled.div`
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    width: 135px;
+    height: 31px;
+    background: rgba(255, 255, 255, 0.16);
+    color: #57ce63;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`;
 
 export default function Me() {
     const [ranks, setRanks] = useState<Array<String>>([]);
@@ -14,8 +29,11 @@ export default function Me() {
     const navigator = useNavigate();
     const [loading, setLoading] = useState(false);
     const [currentDate, setCurrentDate] = useState("Доброй ночи!");
+    const [daily, setDaily] = useState<any>({});
 
-    const { storage } = useContext(Context);
+    const [flag, setFlag] = useState("");
+
+    const { storage, setNotif, setNotifText } = useContext(Context);
 
     async function getMe() {
         setLoading(true);
@@ -51,9 +69,59 @@ export default function Me() {
         return data;
     }
 
+    async function quit() {
+        await fetch("/api/auth/token/logout", {
+            method: "POST",
+            headers: {
+                Authorization: `Token ${storage.get("tracker")}`,
+                "Content-Type": "application/json",
+            },
+        }).catch((err) => err);
+        storage.set("tracker", "");
+        storage.remove("tracker");
+        return navigator("/signin");
+    }
+
+    async function getDaily() {
+        setLoading(true);
+        let response: Response = await fetch("/api/tasks/daily", {
+            headers: {
+                Authorization: `Token ${storage.get("tracker")}`,
+            },
+        });
+        let data = await response.json();
+        setLoading(false);
+        return data;
+    }
+
+    async function handleFlag() {
+        let response: Response = await fetch("/api/tasks/daily", {
+            method: "POST",
+            headers: {
+                Authorization: `Token ${storage.get("tracker")}`,
+                "Content-Type": "application/json;charset=utf-8",
+            },
+            body: JSON.stringify({ flag: flag }),
+        });
+        let data = await response.json();
+        if (data !== "Something wents wrong") {
+            setNotif(true);
+            setNotifText("Успешно!");
+            getDaily()
+                .then((data: any) => setDaily(data))
+                .catch((err) => console.log(err));
+        } else {
+            setNotif(true);
+            setNotifText("Проверь правильность флага.");
+        }
+    }
+
     useEffect(() => {
         getMe().catch((err) => console.log(err));
         usersRanks().then((data) => setRanks(Object.values(data)));
+        getDaily()
+            .then((data: any) => setDaily(data))
+            .catch((err) => console.log(err));
         let date = new Date();
         switch (true) {
             case Number(date.getHours()) >= 8 && Number(date.getHours()) < 12:
@@ -78,50 +146,74 @@ export default function Me() {
             ) : (
                 <>
                     <div className="left-part">
-                        <div className="me">
-                            <h1>Привет, {username}</h1>
-                            <p>{currentDate}</p>
-                            <p>Твои очки: {points}</p>
-                            <div className="me-btns">
-                                <button
-                                    title="К таскам"
-                                    onClick={() => {
-                                        navigator("/tasks/");
-                                    }}
-                                >
-                                    К таскам
-                                </button>
-                                <button title="Команды">Команды (скоро)</button>
-                                <button
-                                    title="Выйти"
-                                    onClick={() => {
-                                        storage.set("tracker", "");
-                                        storage.remove("tracker");
-                                        navigator("/signin");
-                                    }}
-                                >
-                                    Выйти
-                                </button>
+
+                            <div className="me">
+                                <h1>Привет, {username}</h1>
+                                <p>{currentDate}</p>
+                                <div className="me-btns">
+                                    <button
+                                        title="К таскам"
+                                        onClick={() => {
+                                            navigator("/tasks/");
+                                        }}
+                                    >
+                                        К таскам
+                                    </button>
+                                    <button title="Команды">
+                                        Команды (скоро)
+                                    </button>
+                                    <button
+                                        title="Главная"
+                                        onClick={() => {
+                                            navigator("/");
+                                        }}
+                                    >
+                                        Главная
+                                    </button>
+                                    <button
+                                        title="Выйти"
+                                        onClick={() => {
+                                            quit();
+                                        }}
+                                    >
+                                        Выйти
+                                    </button>
+                                </div>
                             </div>
-                        </div>
-                        <div className="daily">
-                            <h1>Таск недели (скоро)</h1>
-                        </div>
+
+                            <div className="daily" style={ daily.solved!=="None" ?  {gridTemplateRows: "25px 1fr 25px"} : {transform: "none"}}>
+                                <h1>Еженедельный таск</h1>
+                                <p>{daily.description}</p>
+                                {daily.solved==="None" ? <input
+                                // style={{height: "80px"}}
+                                    type="text"
+                                    name=""
+                                    id=""
+                                    onChange={(e) => setFlag(e.target.value)}
+                                    onKeyUp={(e) => {
+                                        e.key === "Enter" && handleFlag();
+                                    }}
+                                    placeholder="Сюда флаг"
+                                /> : <Solved>Выполнено</Solved>}
+                            </div>
+                        
                     </div>
                     <div className="right-part">
-                        <div className="rating">
-                            <h1>Рейтинг игроков</h1>
-                            <div className="raiting-container">
-                                {ranks.map((data) => (
-                                    <RankedUser
-                                        key={ranks.indexOf(data)}
-                                        ranks={data}
-                                        index={ranks.indexOf(data)}
-                                        me={username}
-                                    />
-                                ))}
+
+                            <div className="rating">
+                                <h1>Рейтинг игроков</h1>
+                                <div className="raiting-container">
+                                    {ranks.map((data) => (
+                                        <RankedUser
+                                            key={ranks.indexOf(data)}
+                                            ranks={data}
+                                            index={ranks.indexOf(data)}
+                                            me={username}
+                                        />
+                                    ))}
+                                </div>
                             </div>
-                        </div>
+                        
                     </div>
                 </>
             )}

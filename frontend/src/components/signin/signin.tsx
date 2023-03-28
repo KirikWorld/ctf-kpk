@@ -6,6 +6,25 @@ import Loading from "../global/loading";
 import Notification from "../global/notification";
 import { Context } from "../global/context";
 import { useContext } from "react";
+import styled from "styled-components";
+import showpswd from "../../img/showpswd.png";
+import hidepswd from "../../img/hidepswd.png";
+
+const ShowPswd = styled.div`
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    right: 40px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    @media (max-width: 440px) {
+      right: 20px;
+    }
+`;
 
 export default function Signup() {
     const [help, setHelp] = useState(false);
@@ -17,9 +36,11 @@ export default function Signup() {
     const [error, setError] = useState<string>("");
     const [notif, setNotif] = useState<boolean>(false);
 
+    const [pswdVisible, setPswdVisible] = useState(false);
+
     const { storage } = useContext(Context);
 
-    async function signin() {
+    async function handleSignin() {
         setUnauthorized(true);
         let response: Response = await fetch("/api/auth/token/login/", {
             method: "POST",
@@ -41,12 +62,12 @@ export default function Signup() {
         }
         // localStorage.setItem("auth_token", data.auth_token);
         storage.set("tracker", data.auth_token);
-        navigate("/");
+        navigate("/me/");
     }
 
     function successLogin(e: any) {
         if (e.key === "Enter") {
-            signin();
+            handleSignin();
         }
     }
 
@@ -59,54 +80,69 @@ export default function Signup() {
                 ref={signinContainer}
                 onKeyUp={(e) => successLogin(e)}
             >
-                <div className="login-form">
-                    <h3>Вход</h3>
-                    <div className="login">
-                        <p>Никнейм:</p>
-                        <input
-                            type="text"
-                            name=""
-                            id="lgn"
-                            value={login}
-                            onChange={(e) => setLogin(e.target.value)}
-                        />
-                    </div>
-                    <div className="pswd">
-                        <p>Пароль:</p>
-                        <input
-                            type="password"
-                            name=""
-                            id="psw"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                        />
-                    </div>
-                    <div className="btns">
-                        <button className="signin" onClick={() => signin()}>
-                            Войти
-                        </button>
-                        <button
-                            className="signup"
-                            onClick={() => {
-                                storage.set("tracker", "");
-                                storage.remove("tracker");
-                                navigate("/signup/");
-                            }}
+
+                    <div className="login-form">
+                        <h3>Вход</h3>
+                        <div className="login">
+                            <p>Никнейм:</p>
+                            <input
+                                type="text"
+                                name=""
+                                id="lgn"
+                                value={login}
+                                onChange={(e) => setLogin(e.target.value)}
+                            />
+                        </div>
+                        <div className="pswd">
+                            <p>Пароль:</p>
+                            <input
+                                type={pswdVisible ? "text" : "password"}
+                                name=""
+                                id="psw"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
+                            <ShowPswd
+                                onClick={() => setPswdVisible(!pswdVisible)}
+                            >
+                                <img
+                                    src={pswdVisible ? hidepswd : showpswd}
+                                    alt="Показать пароль"
+                                    style={{
+                                        mixBlendMode: "multiply",
+                                    }}
+                                />
+                            </ShowPswd>
+                        </div>
+                        <div className="btns">
+                            <button className="signin" onClick={() => handleSignin()}>
+                                Войти
+                            </button>
+                            <button
+                                className="signup"
+                                onClick={() => {
+                                    storage.set("tracker", "");
+                                    storage.remove("tracker");
+                                    navigate("/signup/");
+                                }}
+                            >
+                                Регистрация
+                            </button>
+                        </div>
+                        <u
+                            onMouseEnter={() => setHelp(true)}
+                            onMouseLeave={() => setHelp(false)}
+                            onClick={() => setHelp(!help)}
                         >
-                            Регистрация
-                        </button>
+                            Нужна помощь?
+                            {help && (
+                                <div className="need-help">
+                                    Telegram: @kiriknm
+                                </div>
+                            )}
+                        </u>
                     </div>
-                    <u
-                        onMouseEnter={() => setHelp(true)}
-                        onMouseLeave={() => setHelp(false)}
-                        onClick={() => setHelp(!help)}
-                    >
-                        Нужна помощь?
-                        {help && (
-                            <div className="need-help">Telegram: @kiriknm</div>
-                        )}
-                    </u>
-                </div>
+                
             </div>
         </>
     );

@@ -8,9 +8,15 @@ import { useNavigate } from "react-router-dom";
 import Loading from "./components/global/loading";
 import Notification from "./components/global/notification";
 import { Context } from "./components/global/context";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Signup from "./components/signup/signup";
 import Basil from "./components/global/basil.min.js";
+import { useLocation } from "react-router-dom";
+
+import info from "./img/info.png";
+import download from "./img/download.png";
+import Banner from "./components/global/banner";
+import News from "./components/news/news";
 
 function App() {
     const navigator = useNavigate();
@@ -18,7 +24,31 @@ function App() {
     const [notifText, setNotifText] = useState(false);
     const [loading, setLoading] = useState<boolean>(false);
 
-    document.title = "ctf-kpk"
+    const location = useLocation();
+    const [displayLocation, setDisplayLocation] = useState(location);
+    const [transitionStage, setTransistionStage] = useState("fadeIn");
+
+    const [showBanner, setShowBanner] = useState(false);
+    const [neverBanner, setNeverBanner] = useState(false);
+
+    useEffect(() => {
+        if (neverBanner === true) {
+            storage.set("showBanner", "false");
+        }
+        if (storage.get("showBanner") !== "false") {
+            setShowBanner(true);
+        }
+    }, [neverBanner]);
+
+    useEffect(() => {
+        if (location !== displayLocation) setTransistionStage("fadeOut");
+    }, [location, displayLocation]);
+
+    const [screenWidth, setScreenWidth] = useState(
+        document.documentElement.clientWidth
+    );
+
+    document.title = "ctf-kpk";
 
     let options = {
         namespace: "storage",
@@ -28,30 +58,66 @@ function App() {
     };
     const storage = Basil(options);
 
+    useEffect(() => {
+        const updateWindowWidth = () => {
+            setScreenWidth(document.documentElement.clientWidth);
+        };
+        window.addEventListener("resize", updateWindowWidth);
+        return () => window.removeEventListener("resize", updateWindowWidth);
+    }, [screenWidth]);
+
     return (
-        <Context.Provider value={{ setNotifText, setNotif, setLoading, storage }}>
+        <Context.Provider
+            value={{
+                setNotifText,
+                setNotif,
+                setLoading,
+                storage,
+                info,
+                download,
+                setShowBanner,
+            }}
+        >
             <>
                 {notif && (
                     <Notification setNotif={setNotif}>{notifText}</Notification>
                 )}
-                <p className="version">V: 0.2.4b</p>
+                <p className="version">V: 0.3.2</p>
                 {loading && <Loading />}
+                {showBanner && (
+                    <Banner
+                        setShowBanner={setShowBanner}
+                        setNeverBanner={setNeverBanner}
+                    ></Banner>
+                )}
                 <div className="App">
-                    <div className="logo-wrapper">
-                        <img
-                            src={logo}
-                            alt=""
-                            className="logo"
-                            onClick={() => navigator("/")}
-                        />
-                    </div>
-                    <div className="container">
-                        <Routes>
-                            <Route path="/tasks/" element={<Tasks />} />
+                    <div
+                        className={`container ${transitionStage}`}
+                        onAnimationEnd={() => {
+                            if (transitionStage === "fadeOut") {
+                                setTransistionStage("fadeIn");
+                                setDisplayLocation(location);
+                            }
+                        }}
+                    >
+                        <div className="logo-wrapper">
+                            <img
+                                src={logo}
+                                alt=""
+                                className="logo"
+                                onClick={() => navigator("/me")}
+                            />
+                        </div>
+                        <Routes location={displayLocation}>
+                            <Route
+                                path="/tasks/"
+                                element={<Tasks screenWidth={screenWidth} />}
+                            />
                             <Route path="/signin/" element={<Signin />} />
                             <Route path="/signup/" element={<Signup />} />
-                            <Route path="/" element={<Me />} />
-                            <Route path="test" element={<Loading />} />
+                            <Route path="/me/" element={<Me />} />
+                            <Route path="/" element={<News />} />
+                            <Route path="/test/" element={<Loading />} />
                         </Routes>
                     </div>
                 </div>

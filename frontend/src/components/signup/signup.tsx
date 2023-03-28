@@ -5,6 +5,26 @@ import { Context } from "../global/context";
 import { useContext } from "react";
 import PswdReq from "./pswdReq";
 import { CSSTransition } from "react-transition-group";
+import styled from "styled-components";
+import showpswd from "../../img/showpswd.png";
+import hidepswd from "../../img/hidepswd.png";
+
+const ShowPswd = styled.div`
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    right: 30px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    @media (max-width: 650px) {
+        right: 55px;
+        width: 25px;
+        height: 25px;
+    }
+`;
 
 export default function Signup() {
     const navigate = useNavigate();
@@ -13,10 +33,11 @@ export default function Signup() {
     const [email, setEmail] = useState<string>("");
     const [login, setLogin] = useState<string>("");
     const [password, setPassword] = useState<string>("");
-    const [group, setGroup] = useState<string>("");
+    // const [group, setGroup] = useState<string>("");
     const [name, setName] = useState<string>("");
     const [surname, setSurname] = useState<string>("");
     const [showpswdReq, setshowPswdReq] = useState<boolean>(false);
+    const [pswdVisible, setPswdVisible] = useState(false);
 
     const reqNode = useRef(null);
 
@@ -29,7 +50,9 @@ export default function Signup() {
                 "Content-Type": "application/json;charset=utf-8",
             },
             body: JSON.stringify({
-                group: group,
+                group: `${new Date().getUTCDate().toString()}.${new Date()
+                    .getUTCMonth()
+                    .toString()}.${new Date().getUTCFullYear().toString()}`,
                 first_name: name,
                 last_name: surname,
                 email: email,
@@ -79,10 +102,21 @@ export default function Signup() {
             <div className="info" id="password">
                 <p>Пароль:</p>
                 <input
-                    type="password"
+                    type={pswdVisible ? "text" : "password"}
                     onChange={(e) => setPassword(e.target.value)}
                     value={password}
+                    style={{ paddingRight: "62px" }}
                 />
+                <ShowPswd onClick={() => setPswdVisible(!pswdVisible)}>
+                    <img
+                        src={pswdVisible ? hidepswd : showpswd}
+                        alt="Показать пароль"
+                        style={{
+                            width: "100%",
+                            mixBlendMode: "multiply",
+                        }}
+                    />
+                </ShowPswd>
                 <CSSTransition
                     nodeRef={reqNode}
                     in={showpswdReq}
@@ -102,14 +136,6 @@ export default function Signup() {
                 >
                     <p>?</p>
                 </div>
-            </div>
-            <div className="info">
-                <p>Группа:</p>
-                <input
-                    type="text"
-                    onChange={(e) => setGroup(e.target.value)}
-                    value={group}
-                />
             </div>
             <div className="info">
                 <p>Имя:</p>

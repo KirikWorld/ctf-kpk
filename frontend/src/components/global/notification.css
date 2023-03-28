@@ -1,5 +1,5 @@
 .notification {
-    position: fixed;
+    position: absolute;
     top: 20px;
     margin: 0 auto;
 
