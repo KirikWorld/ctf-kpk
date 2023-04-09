@@ -28,7 +28,7 @@ const TaskContainer = styled.div<any>`
     backface-visibility: hidden;
     overflow: hidden;
     margin: 0;
-    will-change: transform;
+    /* will-change: transform; */
 
     @media (max-width: 1399px) {
         display: grid;
