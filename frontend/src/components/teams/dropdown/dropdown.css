@@ -1,0 +1,161 @@
+.dropdown {
+    position: relative;
+    width: 230px;
+    filter: url(#goo);
+}
+
+.dropdown__face {
+    background-color: #fff;
+    padding: 20px 10px;
+    border-radius: 15px;
+}
+
+.dropdown__items {
+    background-color: #fff;
+    padding: 20px 10px;
+    border-radius: 15px;
+}
+
+.dropdown__items li {
+    color: black;
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    transition: background .2s ease-in-out;
+}
+
+.dropdown__items li:hover {
+    background: #8f8f8f6d;
+    cursor: pointer;
+}
+
+.dropdown__face {
+    display: block;
+    position: relative;
+}
+
+.dropdown__items {
+    margin: 0;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    width: 100%;
+    list-style: none;
+    list-style-type: none;
+    display: flex;
+    justify-content: space-between;
+    visibility: hidden;
+    z-index: -1;
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.93, 0.88, 0.1, 0.8);
+}
+
+.dropdown__items::before {
+    content: "";
+    background-color: #fff;
+    position: absolute;
+    bottom: 100%;
+    right: 20%;
+    height: 40px;
+    width: 20px;
+}
+
+.dropdown__arrow {
+    border-bottom: 2px solid #000;
+    border-right: 2px solid #000;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    width: 10px;
+    height: 10px;
+    transform: rotate(45deg) translateY(-50%);
+    transform-origin: right;
+    cursor: pointer;
+}
+
+#dropdown {
+    display: none;
+}
+
+#dropdown:checked ~ .dropdown__items {
+    top: calc(100% + 25px);
+    visibility: visible;
+    opacity: 1;
+}
+
+#dropdown__svg {
+    display: none;
+}
+
+.team-form .hint {
+    font-size: 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 0;
+
+    position: absolute;
+
+    width: 20px;
+    height: 20px;
+    /* top: calc(50% - 10px); */
+    bottom: 10px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #ffffff3e;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+    z-index: 2;
+
+    cursor: pointer;
+
+    transition: all .2s ease-in-out;
+}
+
+.team-form .hint:hover {
+    transform: scale(1.1);
+}
+
+
+@media (max-width: 550px) {
+    .dropdown {
+        width: 150px;
+        font-size: 14px;
+    }
+
+    .dropdown__face {
+        padding: 5px 13px;
+    }
+
+    .dropdown__items {
+        padding: 5px 13px;
+    }
+
+    .dropdown__arrow {
+        width: 5px;
+        height: 5px;
+    }
+
+    .team-form h3{
+        font-size: 35px;
+        text-align: center;
+    }
+
+    .team-form .login p {
+        font-size: 20px;
+    }
+
+    .team-form .pswd button {
+        width: 120px;
+    }
+}

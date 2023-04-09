@@ -1,12 +1,13 @@
 import { useEffect, useState, useContext, useRef } from "react";
-import { Task } from "./task";
+import { Task } from "../tasks/task";
 import React from "react";
-import "./tasks.css";
+import "../tasks/tasks.css";
 import { Context } from "../global/context";
-import Categories from "./category/categories";
+import Categories from "../tasks/category/categories";
 import styled from "styled-components";
 import { CSSTransition } from "react-transition-group";
 import cogImg from "../../img/cogR.png";
+import { useNavigate } from "react-router-dom";
 
 const TaskContainer = styled.div<any>`
     width: 90%;
@@ -136,7 +137,7 @@ const Page = styled.div<any>`
     transition: all 0.2s ease-in-out;
 `;
 
-export default function Tasks(props: any) {
+export default function TeamTasks(props: any) {
     const [tasks, setTasks] = useState<any>([]);
     const [unauthorized, setUnauthorized] = useState(false);
     const [startTask, setStartTask] = useState(0);
@@ -161,11 +162,12 @@ export default function Tasks(props: any) {
 
     const [renderPages, setRenderPages] = useState(false);
 
-    const { storage, setLoading } = useContext(Context);
+    const { storage, setLoading, setNotif, setNotifText } = useContext(Context);
+    const navigator = useNavigate();
 
     async function getTasks() {
         setLoading(true);
-        let response: Response = await fetch("/api/tasks/", {
+        let response: Response = await fetch("/api/tasks/teams/", {
             headers: {
                 Authorization: `Token ${storage.get("tracker")}`,
             },
@@ -175,6 +177,11 @@ export default function Tasks(props: any) {
             return "";
         }
         let data = await response.json();
+        if (data.error) {
+            setNotif(true);
+            setNotifText(data.error);
+            navigator("/teams/");
+        }
         setUnauthorized(false);
         let tasks = Object.values(data);
         tasks.length > tasksPerPage ? getSize() : setEndTask(tasks.length);
@@ -336,6 +343,7 @@ export default function Tasks(props: any) {
                                         setTasks={setTasks}
                                         setRerender={setRerender}
                                         rerender={rerender}
+                                        teams={true}
                                     />
                                 ))
                         ) : (

@@ -87,7 +87,7 @@ export default function Description(props: any) {
                     width: "auto",
                     position: "sticky",
                     bottom: "0px",
-                    background: "rgb(87, 44, 144)",
+                    background: "#4343f5",
                     color: "white",
                     height: "30px",
                     fontSize: "14px",

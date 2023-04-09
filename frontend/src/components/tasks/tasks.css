@@ -17,7 +17,7 @@
     align-content: center;
     height: 150px;
     align-self: center;
-    position: fixed;
+    position: absolute;
     right: 35px;
 }
 
@@ -70,7 +70,7 @@
         align-content: center;
         height: 150px;
         align-self: center;
-        position: fixed;
+        position: absolute;
         right: 5px;
     }
     .tasks-wrapper button {

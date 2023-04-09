@@ -5,7 +5,7 @@ from tinymce.models import HTMLField
 class News(models.Model):
     title = models.CharField(verbose_name="Название", max_length=255, blank=False)
     description = HTMLField(verbose_name="Контент")
-    preview = models.ImageField(verbose_name="Превью", blank=True)
+    preview = models.ImageField(verbose_name="Превью", blank=True, upload_to='news/')
     created_at = models.DateTimeField(verbose_name="Создано в", auto_now=True)
     
     def __str__(self):

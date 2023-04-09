@@ -7,7 +7,7 @@ export default function RankedUser(props: any) {
     if (props.index % 2 !== 0) {
         style = {
             background: `${
-                props.me === ranks.username ? "#d2d2d2" : "transparent"
+                props.me === ranks.username ? "#F8F1FF" : "transparent"
             }`,
             border: "4px solid #6b52a08c",
         };
@@ -28,7 +28,7 @@ export default function RankedUser(props: any) {
             }
             style={style}
         >
-            <div className="left-part">
+            <div className="ranked-left-part">
                 <p>{props.index + 1}</p>
                 <p>{ranks.username}</p>
             </div>

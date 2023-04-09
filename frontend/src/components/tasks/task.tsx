@@ -27,6 +27,7 @@ export function Task(props: any) {
                 setTasks={props.setTasks}
                 setRerender={props.setRerender}
                 rerender={props.rerender}
+                teams={props.teams}
             />
         </>
     );

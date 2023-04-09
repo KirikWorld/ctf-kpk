@@ -12,7 +12,7 @@ const CardBack = styled(Card)`
     background: ${(props) =>
         props.solved === "None"
             ? "#a659fd10;"
-            : "linear-gradient(295.61deg, rgba(160, 160, 160, 0.14) -0.03%, rgba(80, 80, 80, 0.6) 100%);"};А
+            : "linear-gradient(295.61deg, rgba(160, 160, 160, 0.14) -0.03%, rgba(80, 80, 80, 0.6) 100%);"};
 
     gap: 0px;
 
@@ -67,14 +67,26 @@ export default function Back(props: any) {
     }
 
     async function handleFlag() {
-        let response: Response = await fetch("/api/tasks/", {
-            method: "POST",
-            headers: {
-                Authorization: `Token ${storage.get("tracker")}`,
-                "Content-Type": "application/json;charset=utf-8",
-            },
-            body: JSON.stringify({ flag: flag, title: props.tasks.title }),
-        });
+        let response: Response
+        if (props.teams) {
+            response = await fetch("/api/tasks/teams/", {
+                method: "POST",
+                headers: {
+                    Authorization: `Token ${storage.get("tracker")}`,
+                    "Content-Type": "application/json;charset=utf-8",
+                },
+                body: JSON.stringify({ flag: flag, title: props.tasks.title }),
+            });
+        } else {
+            response = await fetch("/api/tasks/", {
+                method: "POST",
+                headers: {
+                    Authorization: `Token ${storage.get("tracker")}`,
+                    "Content-Type": "application/json;charset=utf-8",
+                },
+                body: JSON.stringify({ flag: flag, title: props.tasks.title }),
+            });
+        }
         let data = await response.json();
         if (data !== "Something wents wrong") {
             setNotif(true);

@@ -8,7 +8,7 @@
   background: rgba(35, 5, 90, 0.658);
   justify-content: center;
   align-items: center;
-  z-index: 999;
+  z-index: 10;
 }
 
 .pl {

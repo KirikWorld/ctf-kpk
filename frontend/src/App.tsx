@@ -17,6 +17,11 @@ import info from "./img/info.png";
 import download from "./img/download.png";
 import Banner from "./components/global/banner";
 import News from "./components/news/news";
+import Menu from "./components/global/menu";
+import { CSSTransition } from "react-transition-group";
+import Teams from "./components/teams/teams";
+import Invintation from "./components/teams/invintation";
+import TeamTasks from "./components/teams/teamTasks";
 
 function App() {
     const navigator = useNavigate();
@@ -30,6 +35,8 @@ function App() {
 
     const [showBanner, setShowBanner] = useState(false);
     const [neverBanner, setNeverBanner] = useState(false);
+
+    const [showMenu, setShowMenu] = useState(false);
 
     useEffect(() => {
         if (neverBanner === true) {
@@ -82,7 +89,7 @@ function App() {
                 {notif && (
                     <Notification setNotif={setNotif}>{notifText}</Notification>
                 )}
-                <p className="version">V: 0.3.2</p>
+                <p className="version">V: 0.4.0</p>
                 {loading && <Loading />}
                 {showBanner && (
                     <Banner
@@ -105,7 +112,8 @@ function App() {
                                 src={logo}
                                 alt=""
                                 className="logo"
-                                onClick={() => navigator("/me")}
+                                onClick={() => setShowMenu(!showMenu)}
+                                title="Меню"
                             />
                         </div>
                         <Routes location={displayLocation}>
@@ -117,10 +125,24 @@ function App() {
                             <Route path="/signup/" element={<Signup />} />
                             <Route path="/me/" element={<Me />} />
                             <Route path="/" element={<News />} />
+                            <Route path="/teams/" element={<Teams />} />
+                            <Route
+                                path="/teams/tasks/"
+                                element={
+                                    <TeamTasks screenWidth={screenWidth} />
+                                }
+                            />
+                            <Route
+                                path="/invintation/:token"
+                                element={<Invintation />}
+                            />
                             <Route path="/test/" element={<Loading />} />
                         </Routes>
                     </div>
                 </div>
+                <CSSTransition in={showMenu} timeout={300} unmountOnExit>
+                    <Menu setShowMenu={setShowMenu} showMenu={showMenu}></Menu>
+                </CSSTransition>
             </>
         </Context.Provider>
     );

@@ -9,7 +9,7 @@
     backdrop-filter: blur(20px);
     background: #a659fd10;
 
-    width: 350px;
+    width: 340px;
     height: 390px;
 
     overflow-y: scroll;
@@ -117,7 +117,7 @@
 }
 
 .categories-container .category input:checked + label {
-    background: rgb(119, 81, 255);
+    background: #4343f5;
 }
 
 .categories-container .category input:checked + label:hover {

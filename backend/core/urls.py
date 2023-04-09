@@ -14,6 +14,7 @@ urlpatterns = [
                   path('api/auth/', include('djoser.urls.authtoken')),
                   path('api/users/', include('users.urls')),
                   path('api/news/', include('news.urls')),
+                  path('api/teams/', include('teams.urls')),
                   path('tinymce/', include('tinymce.urls')),
                   re_path(r'signin/activate/(?P<uid>[\w-]+)/(?P<token>[\w-]+)/$', UserActivation),
                   re_path(r'media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT})

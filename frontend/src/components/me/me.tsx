@@ -146,46 +146,36 @@ export default function Me() {
             ) : (
                 <>
                     <div className="left-part">
+                        <div className="me">
+                            <h1>Привет, {username}</h1>
+                            <p>{currentDate}</p>
+                            <p>
+                                Присоединяйся{" "}
+                                <a
+                                    href="https://t.me/+HbYwxlMtOwk4NTJi"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    title="Телеграм чат"
+                                    style={{ color: "white", fontWeight: "bold" }}
+                                >
+                                    к нам
+                                </a>
+                            </p>
+                        </div>
 
-                            <div className="me">
-                                <h1>Привет, {username}</h1>
-                                <p>{currentDate}</p>
-                                <div className="me-btns">
-                                    <button
-                                        title="К таскам"
-                                        onClick={() => {
-                                            navigator("/tasks/");
-                                        }}
-                                    >
-                                        К таскам
-                                    </button>
-                                    <button title="Команды">
-                                        Команды (скоро)
-                                    </button>
-                                    <button
-                                        title="Главная"
-                                        onClick={() => {
-                                            navigator("/");
-                                        }}
-                                    >
-                                        Главная
-                                    </button>
-                                    <button
-                                        title="Выйти"
-                                        onClick={() => {
-                                            quit();
-                                        }}
-                                    >
-                                        Выйти
-                                    </button>
-                                </div>
-                            </div>
-
-                            <div className="daily" style={ daily.solved!=="None" ?  {gridTemplateRows: "25px 1fr 25px"} : {transform: "none"}}>
-                                <h1>Еженедельный таск</h1>
-                                <p>{daily.description}</p>
-                                {daily.solved==="None" ? <input
-                                // style={{height: "80px"}}
+                        <div
+                            className="daily"
+                            style={
+                                daily.solved !== "None"
+                                    ? { gridTemplateRows: "25px 1fr 25px" }
+                                    : { transform: "none" }
+                            }
+                        >
+                            <h1>Еженедельный таск</h1>
+                            <p>{daily.description}</p>
+                            {daily.solved === "None" ? (
+                                <input
+                                    // style={{height: "80px"}}
                                     type="text"
                                     name=""
                                     id=""
@@ -194,26 +184,26 @@ export default function Me() {
                                         e.key === "Enter" && handleFlag();
                                     }}
                                     placeholder="Сюда флаг"
-                                /> : <Solved>Выполнено</Solved>}
-                            </div>
-                        
+                                />
+                            ) : (
+                                <Solved>Выполнено</Solved>
+                            )}
+                        </div>
                     </div>
                     <div className="right-part">
-
-                            <div className="rating">
-                                <h1>Рейтинг игроков</h1>
-                                <div className="raiting-container">
-                                    {ranks.map((data) => (
-                                        <RankedUser
-                                            key={ranks.indexOf(data)}
-                                            ranks={data}
-                                            index={ranks.indexOf(data)}
-                                            me={username}
-                                        />
-                                    ))}
-                                </div>
+                        <div className="rating">
+                            <h1>Рейтинг игроков</h1>
+                            <div className="raiting-container">
+                                {ranks.map((data) => (
+                                    <RankedUser
+                                        key={ranks.indexOf(data)}
+                                        ranks={data}
+                                        index={ranks.indexOf(data)}
+                                        me={username}
+                                    />
+                                ))}
                             </div>
-                        
+                        </div>
                     </div>
                 </>
             )}
