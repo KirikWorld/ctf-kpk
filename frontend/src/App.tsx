@@ -14,6 +14,7 @@ import Basil from "./components/global/basil.min.js";
 import { useLocation } from "react-router-dom";
 
 import info from "./img/info.png";
+import flower from "./img/flower.png";
 import download from "./img/download.png";
 import Banner from "./components/global/banner";
 import News from "./components/news/news";
@@ -115,6 +116,7 @@ function App() {
                                 onClick={() => setShowMenu(!showMenu)}
                                 title="Меню"
                             />
+                            <img src={flower} alt="flower" className="event" />
                         </div>
                         <Routes location={displayLocation}>
                             <Route

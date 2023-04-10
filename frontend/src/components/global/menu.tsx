@@ -26,14 +26,24 @@ const FadeOut = keyframes`
     }
 `;
 
+const MenuWrapper = styled.div`
+    width: 100%;
+    position: fixed;
+    bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 15;
+`
+
 const MenuContainer = styled.div<any>`
     width: max-content;
     height: 60px;
     background: #1d1d27;
     padding: 20px;
-    position: fixed;
-    bottom: 10px;
-    margin: 0 auto;
+    /* position: fixed;
+    bottom: 10px; */
+    /* margin: 0 auto; */
     display: flex;
     flex-direction: row;
     justify-self: center;
@@ -145,70 +155,72 @@ export default function Menu(props: propsSchema) {
     }, [route]);
 
     return (
-        <MenuContainer
-            onMouseLeave={() => props.setShowMenu(false)}
-            showMenu={props.showMenu}
-        >
-            {loggedIn ? (
-                routes.map((data) => (
-                    <Page
-                        key={routes.indexOf(data)}
-                        onClick={() => {
-                            if (data.path !== "exit") {
-                                if (data.path !== "home") {
-                                    navigator(data.path);
+        <MenuWrapper>
+            <MenuContainer
+                onMouseLeave={() => props.setShowMenu(false)}
+                showMenu={props.showMenu}
+            >
+                {loggedIn ? (
+                    routes.map((data) => (
+                        <Page
+                            key={routes.indexOf(data)}
+                            onClick={() => {
+                                if (data.path !== "exit") {
+                                    if (data.path !== "home") {
+                                        navigator(data.path);
+                                    }
                                 }
-                            }
-                            if (data.path === "exit") {
-                                quit();
-                            }
-                            if (data.path === "home") {
-                                navigator("/");
-                            }
-                        }}
-                        active={currentPath(data)}
-                        style={{
-                            background: currentPath(data) && "#4343f5",
-                        }}
-                        title={data.title}
-                    >
-                        <img
-                            src={data.ico}
-                            alt="menu-item"
-                            style={{
-                                width: "25px",
-                                height: "auto",
-                                filter: "invert(100%)",
+                                if (data.path === "exit") {
+                                    quit();
+                                }
+                                if (data.path === "home") {
+                                    navigator("/");
+                                }
                             }}
-                        />
-                    </Page>
-                ))
-            ) : (
-                <>
-                    <Page
-                        onClick={() => {
-                            navigator("");
-                        }}
-                        style={{
-                            background: route.pathname === "/" && "#4343f5",
-                        }}
-                    >
-                        Главная
-                    </Page>
-                    <Page
-                        onClick={() => {
-                            navigator("signin");
-                        }}
-                        style={{
-                            background:
-                                route.pathname.replaceAll("/", "") ===
-                                    "signin" && "#4343f5",
-                        }}
-                    >
-                        Вход
-                    </Page>
-                </>
-            )}
-        </MenuContainer>
+                            active={currentPath(data)}
+                            style={{
+                                background: currentPath(data) && "#4343f5",
+                            }}
+                            title={data.title}
+                        >
+                            <img
+                                src={data.ico}
+                                alt="menu-item"
+                                style={{
+                                    width: "25px",
+                                    height: "auto",
+                                    filter: "invert(100%)",
+                                }}
+                            />
+                        </Page>
+                    ))
+                ) : (
+                    <>
+                        <Page
+                            onClick={() => {
+                                navigator("");
+                            }}
+                            style={{
+                                background: route.pathname === "/" && "#4343f5",
+                            }}
+                        >
+                            Главная
+                        </Page>
+                        <Page
+                            onClick={() => {
+                                navigator("signin");
+                            }}
+                            style={{
+                                background:
+                                    route.pathname.replaceAll("/", "") ===
+                                        "signin" && "#4343f5",
+                            }}
+                        >
+                            Вход
+                        </Page>
+                    </>
+                )}
+            </MenuContainer>
+        </MenuWrapper>
     );
 }

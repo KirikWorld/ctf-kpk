@@ -182,6 +182,16 @@ body {
     position: relative;
 }
 
+.logo-wrapper .event {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    z-index: 1;
+    top: 33px;
+    right: 22px;
+    animation: flowerRotate infinite 5s linear;
+}
+
 .logo {
     position: relative;
     width: 150px;
@@ -262,6 +272,15 @@ body {
     /* transform: translate(-20px, 0); */
     opacity: 0;
   }
+}
+
+@keyframes flowerRotate {
+    from {
+        transform: rotate(0);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 @media (max-width: 600px) {

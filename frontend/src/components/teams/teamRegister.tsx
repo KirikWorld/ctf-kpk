@@ -33,6 +33,7 @@ export default function TeamRegister(props: any) {
         }
         if (data.success) {
             props.setHasTeam(true);
+            window.location.reload();
         }
     }
 

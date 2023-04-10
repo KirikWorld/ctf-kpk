@@ -136,7 +136,7 @@ export default function TeamCabinet(props: any) {
                         <h1>Участники</h1>
                         <div
                             className="raiting-container"
-                            style={{ overflowY: "scroll", height: "300px" }}
+                            style={{ overflowY: "scroll", height: "205px" }}
                         >
                             {members.map((data) => (
                                 <RankedUser
