@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./me.css";
@@ -34,6 +34,10 @@ export default function Me() {
     const [flag, setFlag] = useState("");
 
     const { storage, setNotif, setNotifText } = useContext(Context);
+
+    const ratingContainer: any = useRef<any>(null);
+
+    const [showScrollToTop, setShowScrollToTop] = useState(false);
 
     async function getMe() {
         setLoading(true);
@@ -139,6 +143,12 @@ export default function Me() {
         }
     }, []);
 
+    const handleScrollToTop = () => {
+        if (ratingContainer.current) {
+            ratingContainer.current.scrollTop = 0;
+        }
+      };
+
     return (
         <div className="me-container">
             {loading ? (
@@ -156,7 +166,10 @@ export default function Me() {
                                     target="_blank"
                                     rel="noreferrer"
                                     title="Телеграм чат"
-                                    style={{ color: "white", fontWeight: "bold" }}
+                                    style={{
+                                        color: "white",
+                                        fontWeight: "bold",
+                                    }}
                                 >
                                     к нам
                                 </a>
@@ -193,15 +206,30 @@ export default function Me() {
                     <div className="right-part">
                         <div className="rating">
                             <h1>Рейтинг игроков</h1>
-                            <div className="raiting-container">
+                            <div
+                                className="raiting-container"
+                                ref={ratingContainer}
+                            >
                                 {ranks.map((data) => (
                                     <RankedUser
                                         key={ranks.indexOf(data)}
                                         ranks={data}
                                         index={ranks.indexOf(data)}
                                         me={username}
+                                        setShowScrollToTop={setShowScrollToTop}
                                     />
                                 ))}
+                                <button
+                                onClick={()=>handleScrollToTop()}
+                                    className="toTop"
+                                    style={
+                                        showScrollToTop
+                                            ? { opacity: "1" }
+                                            : { opacity: "0" }
+                                    }
+                                >
+                                    <p>^</p>
+                                </button>
                             </div>
                         </div>
                     </div>

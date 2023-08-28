@@ -9,5 +9,6 @@ urlpatterns = [
     path('tasks/', index),
     path('teams/', index),
     path('teams/tasks/', index),
+    path('signin/reset/', index),
     re_path(r'^invintation', index)
 ]

@@ -7,7 +7,7 @@ from rest_framework.response import Response
 from rest_framework import authentication, permissions
 from django.contrib.auth.models import User
 from .models import Task, Category, Daily
-from rest_framework.status import (HTTP_405_METHOD_NOT_ALLOWED)
+from rest_framework.status import HTTP_405_METHOD_NOT_ALLOWED
 from pathlib import Path
 
 
@@ -17,8 +17,18 @@ class ListTasks(APIView):
 
     def get(self, request):
         current_user = request.user
-        tasks = {task.pk: {"title": task.title, "description": task.description if task.description else "",
-                           "costs": task.costs, "file": str(task.file) if task.file else "", "solved": str(task.solves_by.filter(username=current_user).first()), "category": str(task.category)} for task in Task.objects.all()}
+        tasks = {
+            task.pk: {
+                "title": task.title,
+                "description": task.description if task.description else "",
+                "costs": task.costs,
+                "file": str(task.file) if task.file else "",
+                "solved": str(task.solves_by.filter(username=current_user).first()),
+                "category": str(task.category),
+                "flag_format": task.flag.split("{")[0],
+            }
+            for task in Task.objects.all()
+        }
         return Response(tasks)
 
     def post(self, request):
@@ -51,8 +61,10 @@ class ListCat(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def get(self, request):
-        cats = {cat.pk: {"category": cat.title, "checked": "false"}
-                for cat in Category.objects.all()}
+        cats = {
+            cat.pk: {"category": cat.title, "checked": "false"}
+            for cat in Category.objects.all()
+        }
         return Response(cats)
 
     def post(self, request):
@@ -74,7 +86,13 @@ class DailyList(APIView):
     def get(self, request):
         task = Daily.objects.last()
         current_user = request.user
-        return Response({"description": task.description, "costs": task.costs, "solved": str(task.solves_by.filter(username=current_user).first())})
+        return Response(
+            {
+                "description": task.description,
+                "costs": task.costs,
+                "solved": str(task.solves_by.filter(username=current_user).first()),
+            }
+        )
 
     def post(self, request):
         current_user = request.user
@@ -108,8 +126,19 @@ class ListTeamsTasks(APIView):
         current_user = request.user
         if current_user.team:
             if current_user.team.active:
-                tasks = {task.pk: {"title": task.title, "description": task.description if task.description else "",
-                            "costs": task.costs, "file": str(task.file) if task.file else "", "solved": str(task.solves_by.filter(title=current_user.team).first()), "category": str(task.category)} for task in TeamsTasks.objects.all()}
+                tasks = {
+                    task.pk: {
+                        "title": task.title,
+                        "description": task.description if task.description else "",
+                        "costs": task.costs,
+                        "file": str(task.file) if task.file else "",
+                        "solved": str(
+                            task.solves_by.filter(title=current_user.team).first()
+                        ),
+                        "category": str(task.category),
+                    }
+                    for task in TeamsTasks.objects.all()
+                }
                 return JsonResponse(tasks)
             if not current_user.team.active:
                 return JsonResponse({"error": "Команда не проверена"})

@@ -103,7 +103,7 @@ export default function Back(props: any) {
             setNotifText("Проверь правильность флага.");
         }
     }
-
+    
     return (
         <>
             <CSSTransition
@@ -203,7 +203,7 @@ export default function Back(props: any) {
                                 onKeyUp={(e) => {
                                     e.key === "Enter" && handleFlag();
                                 }}
-                                placeholder="Сюда флаг"
+                                placeholder={`${props.tasks.flag_format}{}`}
                             />
                         ) : (
                             <SolvedBack handleBlur={handleBlur}>

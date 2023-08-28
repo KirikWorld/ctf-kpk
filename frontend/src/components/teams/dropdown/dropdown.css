@@ -102,12 +102,13 @@
 
     padding: 0;
 
-    position: absolute;
+    /* position: absolute; */
 
     width: 20px;
     height: 20px;
     /* top: calc(50% - 10px); */
-    bottom: 10px;
+    /* bottom: 10px; */
+    margin-left: 15px;
 
     border: none;
     border-radius: 50%;

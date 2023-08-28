@@ -183,6 +183,34 @@
     overflow-x: auto;
     position: relative;
     height: 430px;
+    scroll-behavior: smooth;
+}
+
+.toTop {
+    position: sticky;
+    left: 90%;
+    /* right: 0; */
+    bottom: 10px;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    font-size: 40px;
+    cursor: pointer;
+    background: #F8F1FF;
+    transition: all .3s ease-in-out;
+    z-index: 3;
+}
+
+.toTop:hover {
+    background: #F8F1FF;
+}
+
+.toTop p {
+    font-size: 40px;
+    color: black;
+    margin-top: 22px;
 }
 
 @media (max-width: 1300px) {
@@ -204,6 +232,27 @@
 
     .rating {
         max-height: 600px;
+    }
+    .toTop {
+        position: sticky;
+        left: 90%;
+        /* right: 0; */
+        bottom: 10px;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        font-size: 40px;
+        cursor: pointer;
+        background: #F8F1FF;
+        transition: all .3s ease-in-out;
+        z-index: 3;
+    }
+    .toTop p {
+        font-size: 40px;
+        color: black;
+        margin-top: 22px;
     }
 }
 
@@ -261,6 +310,27 @@
     .rating p {
         font-size: 27px;
     }
+    .toTop {
+        position: sticky;
+        left: 90%;
+        /* right: 0; */
+        bottom: 10px;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        font-size: 40px;
+        cursor: pointer;
+        background: #F8F1FF;
+        transition: all .3s ease-in-out;
+        z-index: 3;
+    }
+    .toTop p {
+        font-size: 40px;
+        color: black;
+        margin-top: 22px;
+    }
 }
 
 @media (max-width: 485px) {
@@ -269,6 +339,26 @@
         height: 45px;
         font-size: 11px;
     }
+    .toTop {
+        position: sticky;
+        left: 90%;
+        /* right: 0; */
+        bottom: 10px;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        font-size: 40px;
+        cursor: pointer;
+        background: #F8F1FF;
+        transition: all .3s ease-in-out;
+    }
+    .toTop p {
+        font-size: 40px;
+        color: black;
+        margin-top: 22px;
+    }
 }
 
 @media (max-width: 415px) {
@@ -276,6 +366,26 @@
         width: 78px;
         height: 45px;
         font-size: 11px;
+    }
+    .toTop {
+        position: sticky;
+        left: 90%;
+        /* right: 0; */
+        bottom: 10px;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        font-size: 40px;
+        cursor: pointer;
+        background: #F8F1FF;
+        transition: all .3s ease-in-out;
+    }
+    .toTop p {
+        font-size: 40px;
+        color: black;
+        margin-top: 22px;
     }
 }
 
@@ -288,6 +398,26 @@
         height: 45px;
         font-size: 11px;
     }
+    .toTop {
+        position: sticky;
+        left: 90%;
+        /* right: 0; */
+        bottom: 10px;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        font-size: 40px;
+        cursor: pointer;
+        background: #F8F1FF;
+        transition: all .3s ease-in-out;
+    }
+    .toTop p {
+        font-size: 40px;
+        color: black;
+        margin-top: 22px;
+    }
 }
 
 @media (max-width: 350px) {
@@ -295,5 +425,25 @@
         width: 63px;
         height: 45px;
         font-size: 11px;
+    }
+    .toTop {
+        position: sticky;
+        left: 90%;
+        /* right: 0; */
+        bottom: 10px;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        font-size: 40px;
+        cursor: pointer;
+        background: #F8F1FF;
+        transition: all .3s ease-in-out;
+    }
+    .toTop p {
+        font-size: 40px;
+        color: black;
+        margin-top: 22px;
     }
 }

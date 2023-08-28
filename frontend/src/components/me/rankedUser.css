@@ -17,13 +17,23 @@
     font-size: 30px;
 
     margin-bottom: 20px;
-
+        
     flex-shrink: 0;
+
+    opacity: .4;
+    transform: translateX(-165px);
+    transition: all .5s;
+}
+
+.ranked-user.scrolled {
+    transform: translateX(0);
+    opacity: 1;
 }
 
 .ranked-user.iam {
     color: black;
     background: #F8F1FF;
+    z-index: 3;
 }
 
 .ranked-user .ranked-left-part {

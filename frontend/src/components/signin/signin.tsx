@@ -129,18 +129,21 @@ export default function Signup() {
                                 Регистрация
                             </button>
                         </div>
-                        <u
-                            onMouseEnter={() => setHelp(true)}
-                            onMouseLeave={() => setHelp(false)}
-                            onClick={() => setHelp(!help)}
-                        >
-                            Нужна помощь?
-                            {help && (
-                                <div className="need-help">
-                                    Telegram: @kiriknm
-                                </div>
-                            )}
-                        </u>
+                        <div className="help-nav" style={{width: "100%", display: "flex", justifyContent: "space-around"}}>
+                            <u
+                                onMouseEnter={() => setHelp(true)}
+                                onMouseLeave={() => setHelp(false)}
+                                onClick={() => setHelp(!help)}
+                            >
+                                Нужна помощь?
+                                {help && (
+                                    <div className="need-help">
+                                        Telegram: @kiriknm
+                                    </div>
+                                )}
+                            </u>
+                            <u style={{cursor: "pointer"}} onClick={()=>navigate('reset/')}>Забыли пароль?</u>
+                        </div>
                     </div>
                 
             </div>

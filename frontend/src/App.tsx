@@ -23,9 +23,9 @@ import { CSSTransition } from "react-transition-group";
 import Teams from "./components/teams/teams";
 import Invintation from "./components/teams/invintation";
 import TeamTasks from "./components/teams/teamTasks";
+import PasswordReset from "./components/signin/passwordReset";
 
 function App() {
-    const navigator = useNavigate();
     const [notif, setNotif] = useState(false);
     const [notifText, setNotifText] = useState(false);
     const [loading, setLoading] = useState<boolean>(false);
@@ -34,19 +34,27 @@ function App() {
     const [displayLocation, setDisplayLocation] = useState(location);
     const [transitionStage, setTransistionStage] = useState("fadeIn");
 
-    const [showBanner, setShowBanner] = useState(false);
-    const [neverBanner, setNeverBanner] = useState(false);
+    // const [showBanner, setShowBanner] = useState(false);
+    // const [neverBanner, setNeverBanner] = useState(false);
 
     const [showMenu, setShowMenu] = useState(false);
 
-    useEffect(() => {
-        if (neverBanner === true) {
-            storage.set("showBanner", "false");
+    const [iphone, setIphone] = useState(false);
+
+    useEffect(()=>{
+        if (navigator.userAgent.indexOf("iPhone")!==-1) {
+            setIphone(true)
         }
-        if (storage.get("showBanner") !== "false") {
-            setShowBanner(true);
-        }
-    }, [neverBanner]);
+    },[])
+
+    // useEffect(() => {
+    //     if (neverBanner === true) {
+    //         storage.set("showBanner", "false");
+    //     }
+    //     if (storage.get("showBanner") !== "false") {
+    //         setShowBanner(true);
+    //     }
+    // }, [neverBanner]);
 
     useEffect(() => {
         if (location !== displayLocation) setTransistionStage("fadeOut");
@@ -83,21 +91,21 @@ function App() {
                 storage,
                 info,
                 download,
-                setShowBanner,
+                // setShowBanner,
             }}
         >
             <>
                 {notif && (
                     <Notification setNotif={setNotif}>{notifText}</Notification>
                 )}
-                <p className="version">V: 0.4.0</p>
+                <p className="version">V: 0.4.3</p>
                 {loading && <Loading />}
-                {showBanner && (
+                {/* {showBanner && (
                     <Banner
                         setShowBanner={setShowBanner}
                         setNeverBanner={setNeverBanner}
                     ></Banner>
-                )}
+                )} */}
                 <div className="App">
                     <div
                         className={`container ${transitionStage}`}
@@ -107,6 +115,7 @@ function App() {
                                 setDisplayLocation(location);
                             }
                         }}
+                        style={iphone ? {background: "none"} : {}}
                     >
                         <div className="logo-wrapper">
                             <img
@@ -124,6 +133,7 @@ function App() {
                                 element={<Tasks screenWidth={screenWidth} />}
                             />
                             <Route path="/signin/" element={<Signin />} />
+                            <Route path="/signin/reset/" element={<PasswordReset />} />
                             <Route path="/signup/" element={<Signup />} />
                             <Route path="/me/" element={<Me />} />
                             <Route path="/" element={<News />} />

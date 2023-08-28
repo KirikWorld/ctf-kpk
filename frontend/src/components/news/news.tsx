@@ -6,7 +6,7 @@ import NewComponent from "./new";
 const Container = styled.div`
     width: 100%;
     height: 100%;
-    display flex;
+    display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
     background: inherit;
@@ -71,7 +71,7 @@ const NewContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px 1.5 %;
+    padding: 20px 1.5%;
     overflow-y: scroll;
     scrollbar-width: thin;
 `;
@@ -135,7 +135,7 @@ export default function News() {
                         </p>
                         <br />
                         <p>
-                            Под руководством преподавателя Павла Сергеевича,
+                            Под руководством преподавателя Дмитренко Павла Сергеевича,
                             руководителя CTF KPK, мы постоянно учимся и
                             совершенствуем наши навыки в области
                             кибербезопасности. Павел Сергеевич, также, проводит

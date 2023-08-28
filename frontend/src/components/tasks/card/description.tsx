@@ -81,12 +81,12 @@ export default function Description(props: any) {
 
     return (
         <Descriptionc handleHide={handleHide}>
-            {props.desc ? props.desc : "Автор поленился оставить описание"}
+            <p>{props.desc ? props.desc : "Автор поленился оставить описание"}</p>
             <button
                 style={{
                     width: "auto",
                     position: "sticky",
-                    bottom: "0px",
+                    bottom: "10px",
                     background: "#4343f5",
                     color: "white",
                     height: "30px",

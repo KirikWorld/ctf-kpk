@@ -5,6 +5,7 @@ from django.conf.urls.static import static
 from django.views.static import serve
 from app.views import index
 from users.views import UserActivation
+from de.views import *
 
 urlpatterns = [
                   path('admin/', admin.site.urls),
@@ -15,6 +16,10 @@ urlpatterns = [
                   path('api/users/', include('users.urls')),
                   path('api/news/', include('news.urls')),
                   path('api/teams/', include('teams.urls')),
+                  #DE
+                  path("de/", chat),
+                  path('chat/', chatClient),
+                  #DE
                   path('tinymce/', include('tinymce.urls')),
                   re_path(r'signin/activate/(?P<uid>[\w-]+)/(?P<token>[\w-]+)/$', UserActivation),
                   re_path(r'media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT})

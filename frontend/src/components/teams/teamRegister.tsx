@@ -64,7 +64,15 @@ export default function TeamRegister(props: any) {
                         marginTop: "10px",
                     }}
                 >
-                    <button onClick={() => createTeam()}>Создать</button>
+                    <div className="create-team" style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
+                        <button onClick={() => createTeam()}>Создать</button>
+                        <div
+                            className="hint"
+                            onClick={() => setshowTeamReq(!showTeamReq)}
+                        >
+                            ?
+                        </div>
+                    </div>
                     <Dropdown members={members} setMembers={setMembers} />
                 </div>
                 <CSSTransition
@@ -78,12 +86,6 @@ export default function TeamRegister(props: any) {
                         <TeamReq setshowTeamReq={setshowTeamReq} />
                     </div>
                 </CSSTransition>
-                <div
-                    className="hint"
-                    onClick={() => setshowTeamReq(!showTeamReq)}
-                >
-                    ?
-                </div>
             </div>
         </div>
     );
